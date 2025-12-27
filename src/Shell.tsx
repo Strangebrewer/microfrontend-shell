@@ -1,29 +1,43 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
-  const App1 = React.lazy(() => import('mfe-app-one/App'));
-  const App2 = React.lazy(() => import('mfe-app-two/App'));
+const App1 = React.lazy(() => import('mfe-app-one/App'));
+const App2 = React.lazy(() => import('mfe-app-two/App'));
 
-const Shell: React.FC = () => {
-  const [currentApp, setCurrentApp] = useState<'app1' | 'app2'>('app1');
+const ShellInner: React.FC = () => {
+  const navigate = useNavigate();
 
   return (
     <div>
-      <nav style={{ padding: '1rem', borderBottom: '2px solid #ccc' }}>
+      <nav style={{ borderBottom: '2px solid #ccc', height: '64px' }}>
         <h1>Microfrontend Shell</h1>
-        <button onClick={() => setCurrentApp('app1')} style={{ marginRight: '1rem' }}>
-          App One
-        </button>
-        <button onClick={() => setCurrentApp('app2')}>
-          App Two
-        </button>
+        <button onClick={() => navigate('/')} style={{ marginRight: '1rem' }}>App 1</button>
+        <button onClick={() => navigate('/stuff')}>App 2</button>
       </nav>
 
-      <main style={{ padding: '2rem' }}>
+      <main style={{ display: 'flex' }}>
+        <div style={{ width: '64px', borderRight: '1px solid grey', height: 'calc(100vh - 64px)' }}>
+          <div className="bg-red-500 text-white">
+            Tailwind works
+          </div>
+
+        </div>
         <Suspense fallback={<div>Loading...</div>}>
-          {currentApp === 'app1' ? <App1 /> : <App2 />}
+          <Routes>
+            <Route path="/" element={<App1 />} />
+            <Route path="/stuff" element={<App2 />} />
+          </Routes>
         </Suspense>
       </main>
     </div>
+  );
+}
+
+const Shell: React.FC = () => {
+  return (
+    <Router>
+      <ShellInner />
+    </Router>
   );
 };
 

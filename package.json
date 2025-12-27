@@ -15,13 +15,22 @@
   "packageManager": "pnpm@10.12.4",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.11.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^25.0.3",
     "@types/react": "18.3.27",
     "@types/react-dom": "^18.3.7",
+    "@types/react-router-dom": "^5.3.3",
+    "autoprefixer": "^10.4.23",
+    "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.5",
+    "postcss": "^8.5.6",
+    "postcss-loader": "^8.2.0",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^4.1.18",
     "ts-loader": "^9.5.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
