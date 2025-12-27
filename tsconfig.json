@@ -8,13 +8,14 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "incremental": true,
     "isolatedModules": false,
     "baseUrl": "./",
+    
     "paths": {
       "mfe-app-one/*": ["./@types/mfe-app-one/*"],
       "mfe-app-two/*": ["./@types/mfe-app-two/*"]

@@ -20,8 +20,7 @@ const Shell: React.FC = () => {
 
       <main style={{ padding: '2rem' }}>
         <Suspense fallback={<div>Loading...</div>}>
-          {/* {currentApp === 'app1' ? <App1 /> : <App2 />} */}
-          <App1 />
+          {currentApp === 'app1' ? <App1 /> : <App2 />}
         </Suspense>
       </main>
     </div>

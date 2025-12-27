@@ -1,8 +1,13 @@
 import type { Configuration } from 'webpack';
-import { container } from 'webpack';
+// import { container } from 'webpack';
+import webpack from 'webpack';
 import 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const config: Configuration = {
   mode: 'development',
@@ -12,7 +17,12 @@ const config: Configuration = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: {
+          loader: 'ts-loader',
+          options: {
+            configFile: path.resolve(__dirname, "tsconfig.json"),
+          },
+        },
         exclude: /node_modules/,
       },
     ],
@@ -35,7 +45,7 @@ const config: Configuration = {
       template: './public/index.html',
     }),
 
-    new container.ModuleFederationPlugin({
+    new webpack.container.ModuleFederationPlugin({
       name: 'shell',
 
       remotes: {
@@ -44,16 +54,8 @@ const config: Configuration = {
       },
 
       shared: {
-        react: {
-          singleton: true,
-          eager: true,
-          requiredVersion: '^19.2.3',
-        },
-        'react-dom': {
-          singleton: true,
-          eager: true,
-          requiredVersion: '^19.2.3',
-        },
+        react: { singleton: true },
+        'react-dom': { singleton: true },
       },
     }),
   ],
