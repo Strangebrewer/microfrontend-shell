@@ -5,7 +5,7 @@ import Sidebar from './components/Sidebar';
 
 const Shell: FC = () => {
   return (
-    <div className='tw:border tw:border-[red]'>
+    <div>
       <Header />
 
       <div className='tw:flex'>

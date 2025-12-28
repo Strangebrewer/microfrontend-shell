@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 const Sidebar: FC = () => {
   return (
-    <div className='tw:w-[64px] tw:border-r tw:border-grey tw:h-[calc(100vh_-_66px)]'>
+    <div className='tw:w-[64px] tw:border-r tw:border-grey tw:h-[calc(100vh_-_64px)]'>
       <div className="tw:bg-orange-500 tw:text-white">
         Narfing
       </div>
