@@ -10,9 +10,7 @@ const Shell: FC = () => {
 
       <div className='tw:flex'>
         <Sidebar />
-        <main className='tw:grow'>
-          <BaseRouter />
-        </main>
+        <BaseRouter />
       </div>
     </div>
   );
