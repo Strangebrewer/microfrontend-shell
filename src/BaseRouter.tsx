@@ -1,10 +1,10 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { FC, lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-const App1 = React.lazy(() => import('mfe-app-one/App'));
-const App2 = React.lazy(() => import('mfe-app-two/App'));
+const App1 = lazy(() => import('mfe-app-one/App'));
+const App2 = lazy(() => import('mfe-app-two/App'));
 
-export const BaseRouter: React.FC = () => {
+export const BaseRouter: FC = () => {
   const routes = [
     {
       path: '/',

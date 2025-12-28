@@ -1,29 +1,19 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC } from 'react';
 import { BaseRouter } from './BaseRouter';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 
-const Shell: React.FC = () => {
-  const navigate = useNavigate();
-
+const Shell: FC = () => {
   return (
-    <div>
-      {/* separate this into a header component */}
-      <nav style={{ borderBottom: '2px solid #ccc', height: '64px' }}>
-        <h1>Microfrontend Shell</h1>
-        <button onClick={() => navigate('/')} style={{ marginRight: '1rem' }}>App 1</button>
-        <button onClick={() => navigate('/stuff')}>App 2</button>
-      </nav>
+    <div className='tw:border tw:border-[red]'>
+      <Header />
 
-      <main style={{ display: 'flex' }}>
-        {/* separate this into a sidebar component */}
-        <div style={{ width: '64px', borderRight: '1px solid grey', height: 'calc(100vh - 64px)' }}>
-          <div className="bg-red-500 text-white">
-            Tailwind works
-          </div>
-        </div>
-
-        <BaseRouter />
-      </main>
+      <div className='tw:flex'>
+        <Sidebar />
+        <main className='tw:grow'>
+          <BaseRouter />
+        </main>
+      </div>
     </div>
   );
 };
