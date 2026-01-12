@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import Modal from '@xds-react/modal';
+import { Button } from '@xds-react/button';
+import TextField from "@xds-react/text-field";
 
 type LoginModalProps = {
+  show: boolean;
   close: () => any;
 }
 
-const LoginModal: React.FC<LoginModalProps> = ({ close }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ close, show }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,23 +31,46 @@ const LoginModal: React.FC<LoginModalProps> = ({ close }) => {
   }
 
   return (
-    <div
-      className="login-modal-wrapper"
-      onClick={onClickOutside}
-      style={{ display: 'flex', background: '#000000cc', position: 'fixed', inset: 0 }}>
-      <div style={{ height: '300px', width: '300px', margin: 'auto', background: 'white' }}>
-        <h2>Login</h2>
-        <div>
-          <label>email</label>
-          <input type="text" name="email" value={email} onChange={e => setEmail(e.target.value)} style={{ border: '1px solid black '}} />
+    <Modal
+      showModal={show}
+      closeModal={closeModal}
+      width="480px"
+      height="auto"
+      headerTitle="Login"
+      actions={[
+        <Button
+          variant="borderless"
+          color="red"
+          onClick={closeModal}
+          title="Cancel"
+        />,
+        <Button
+          variant="borderless"
+          color="teal"
+          onClick={submit}
+          title="Login"
+        />,
+      ]}
+    >
+      <div className="tw:h=[100%] tw:w-[100%] tw:p-[16px]">
+        <div className="tw:mb-[16px]">
+          <TextField
+            id="login-email-text-field"            
+            label="Email"
+            isRequired
+            onChange={setEmail}
+            value={email}
+          />
         </div>
-        <div>
-          <label>password</label>
-          <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} style={{ border: '1px solid black '}} />
-        </div>
-        <button onClick={submit}>submit</button>
+        <TextField
+          id="login-password-text-field"
+          label="Password"
+          isRequired
+          onChange={setPassword}
+          value={password}
+        />
       </div>
-    </div>
+    </Modal>
   );
 };
 

@@ -19,6 +19,7 @@ import { FC } from 'react';
 import { BaseRouter } from './BaseRouter';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import { createAuthClient } from '@bka-stuff/mfe-utils';
 
 const Shell: FC = () => {
   return (

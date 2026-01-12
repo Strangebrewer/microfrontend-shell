@@ -17,7 +17,7 @@ const Header: FC = () => {
         className='tw:mr-[16px]'
         onClick={() => setShowLoginModal(!showLoginModal)}
       >{showLoginModal ? 'Close' : 'Login'}</button>
-      {showLoginModal && <LoginModal close={() => setShowLoginModal(false)} />}
+      {showLoginModal && <LoginModal show={showLoginModal} close={() => setShowLoginModal(false)} />}
     </nav>
   );
 };
