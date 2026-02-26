@@ -7,6 +7,7 @@ export const axiosPublic = axios.create({ baseURL: BASE_URL });
 export const axiosAuth = axios.create({ baseURL: BASE_URL });
 
 createAuthClient({
+  refreshEndpoint: '/tokens/exchange',
   axiosPublic,
   axiosAuth,
   onLogout: () => {
