@@ -3,6 +3,8 @@ import Modal from '@xds-react/modal';
 import { Button } from '@xds-react/button';
 import TextField from "@xds-react/text-field";
 
+import { useLogin } from '../hooks/userHooks';
+
 type LoginModalProps = {
   show: boolean;
   close: () => any;
@@ -11,16 +13,12 @@ type LoginModalProps = {
 const LoginModal: React.FC<LoginModalProps> = ({ close, show }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [login] = useLogin();
 
-  function onClickOutside(e: React.BaseSyntheticEvent) {
-    if (e.target.className.includes('login-modal-wrapper')) {
-      closeModal();
-    }
-  }
-
-  function submit() {
+  async function submit() {
     console.log('email:::', email);
     console.log('password:::', password);
+    await login({ email, password });
     closeModal();
   }
 

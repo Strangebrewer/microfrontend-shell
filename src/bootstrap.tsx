@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { KWThemeProvider } from '@xds-core/theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Shell from './Shell';
+
+import { Provider } from 'jotai';
 import './index.css';
 
 const queryClient = new QueryClient({
@@ -19,7 +21,9 @@ root.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <KWThemeProvider>
-        <Shell />
+        <Provider>
+          <Shell />
+        </Provider>
       </KWThemeProvider>
     </QueryClientProvider>
   </BrowserRouter>

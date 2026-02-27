@@ -6,12 +6,14 @@ const BASE_URL = "http://localhost:8080";
 export const axiosPublic = axios.create({ baseURL: BASE_URL });
 export const axiosAuth = axios.create({ baseURL: BASE_URL });
 
-createAuthClient({
-  refreshEndpoint: '/tokens/exchange',
+// IMPORTANT: put your app “logout effects” here (clear state + route, etc.)
+export const authClient = createAuthClient({
   axiosPublic,
   axiosAuth,
   onLogout: () => {
-    // whatever the shell should do
+    // keep minimal here; you can also call authClient.logout() from your hook
     console.log("Logged out");
   },
-}).attach();
+});
+
+authClient.attach();

@@ -1,12 +1,12 @@
-import { axiosPublic, axiosAuth } from "../utils/axios";
+import { axiosPublic, axiosAuth } from "../utils/authClient";
 
 export default class BaseApi {
-  private endpoint;
-  private axiosPublic;
-  private axiosWithAuth;
+  endpoint;
+  axios;
+  axiosWithAuth;
   constructor(endpoint: string) {
     this.endpoint = endpoint;
-    this.axiosPublic = axiosPublic;
+    this.axios = axiosPublic;
     this.axiosWithAuth = axiosAuth;
   }
 
