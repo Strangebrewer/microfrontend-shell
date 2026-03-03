@@ -7,12 +7,12 @@ const App2 = lazy(() => import('mfe-app-two/App'));
 export const BaseRouter: FC = () => {
   const routes = [
     {
-      path: '/',
-      Component: App1,
+      path: '/stuff/*',
+      Component: App2
     },
     {
-      path: '/stuff',
-      Component: App2,
+      path: '/*',
+      Component: App1,
     },
   ];
 
