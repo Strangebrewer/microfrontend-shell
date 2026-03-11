@@ -15,10 +15,14 @@
     "incremental": true,
     "isolatedModules": false,
     "baseUrl": "./",
+    "preserveSymlinks": false,
     
     "paths": {
       "mfe-app-one/*": ["./@types/mfe-app-one/*"],
-      "mfe-app-two/*": ["./@types/mfe-app-two/*"]
+      "mfe-app-two/*": ["./@types/mfe-app-two/*"],
+      "axios": ["./node_modules/axios"],
+      "react": ["./node_modules/react"],
+      "react-dom": ["./node_modules/react-dom"]
     },
     "types": ["node"]
   },

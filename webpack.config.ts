@@ -34,6 +34,12 @@ const config: Configuration = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    symlinks: true,
+    alias: {
+      axios: path.resolve(__dirname, "node_modules/axios"),
+      react: path.resolve(__dirname, "node_modules/react"),
+      "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
+    },
   },
 
   output: {

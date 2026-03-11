@@ -30,7 +30,7 @@ const Header: FC = () => {
         className='tw:mr-[16px]'
         onClick={authAndStuff}
       >{token ? 'Logout' : 'Login'}</button>
-      {showLoginModal && <LoginModal show={showLoginModal} close={() => setShowLoginModal(false)} />}
+      <LoginModal close={() => setShowLoginModal(false)} isOpen={showLoginModal} />
     </nav>
   );
 };
