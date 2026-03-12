@@ -2,7 +2,6 @@ import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginModal from './LoginModal';
 import { authClient } from '../utils/authClient';
-
 import { useLogout } from '../hooks/userHooks';
 
 const Header: FC = () => {
@@ -10,11 +9,13 @@ const Header: FC = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [logout] = useLogout();
 
-  const token = authClient.getAccessToken();
+  let token = authClient.getAccessToken();
 
-  function authAndStuff() {
+  function auth() {
     if (token) {
       logout();
+      token = null;
+      return;
     }
     setShowLoginModal(!showLoginModal);
   }
@@ -24,11 +25,11 @@ const Header: FC = () => {
       <h1>Microfrontend Shell</h1>
       <div>
         <button className='tw:mr-[1rem]' onClick={() => navigate('/')}>App 1</button>
-        <button onClick={() => navigate('/stuff')}>App 2</button>
+        <button onClick={() => navigate('/job-search')}>App 2</button>
       </div>
       <button
         className='tw:mr-[16px]'
-        onClick={authAndStuff}
+        onClick={auth}
       >{token ? 'Logout' : 'Login'}</button>
       <LoginModal close={() => setShowLoginModal(false)} isOpen={showLoginModal} />
     </nav>
