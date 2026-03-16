@@ -6,6 +6,7 @@ import { useGetCurrentUser } from './hooks/userHooks';
 import { useUserStore } from '@bka-stuff/mfe-utils';
 
 import { authClient } from './utils/authClient';
+import { MINIMUM_LOAD_DELAY } from './utils/constants';
 
 const Shell: FC = () => {
   const [getCurrentUser] = useGetCurrentUser();
@@ -26,7 +27,7 @@ const Shell: FC = () => {
         authClient.clearTokens();
         clearUser();
       } finally {
-        setTimeout(() => setIsReady(true), 1000);
+        setTimeout(() => setIsReady(true), MINIMUM_LOAD_DELAY);
       }
     })();
   }, []);

@@ -1,4 +1,5 @@
 import React, { lazy } from 'react';
+import { MINIMUM_LOAD_DELAY } from './constants';
 // This utility solves the problem of the Suspense fallback flickering while
 //   the MFEs lazy load; it forces the fallback to stay on the screen for a
 //   minimum of 500 ms by delaying the lazy load (since Suspense has no built-
@@ -17,7 +18,7 @@ const bootPath = window.location.pathname;
 
 function lazyWithMinDelay<T extends React.ComponentType<any>>(
   importer: () => Promise<{ default: T }>,
-  minMs = 1000
+  minMs = MINIMUM_LOAD_DELAY,
 ) {
   return lazy(() =>
     Promise.all([
@@ -29,7 +30,7 @@ function lazyWithMinDelay<T extends React.ComponentType<any>>(
 
 function buildLazyImports<T extends React.ComponentType<any>>(
   importer: () => Promise<{ default: T }>,
-  minMs = 1000,
+  minMs = MINIMUM_LOAD_DELAY,
 ) {
   return {
     normal: lazy(importer),
@@ -45,11 +46,11 @@ function getRoutePrefix(path: string) {
 export const routes: RouteDefinition[] = [
   {
     path: '/job-search/*',
-    ...buildLazyImports(() => import('mfe-app-two/App'), 500),
+    ...buildLazyImports(() => import('mfe-app-two/App'), MINIMUM_LOAD_DELAY),
   },
   {
     path: '/*',
-    ...buildLazyImports(() => import('mfe-app-one/App'), 500),
+    ...buildLazyImports(() => import('mfe-app-one/App'), MINIMUM_LOAD_DELAY),
   },
 ];
 
