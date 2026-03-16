@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import BaseApi from './baseApi';
 
 class UserApi extends BaseApi {
@@ -14,7 +15,7 @@ class UserApi extends BaseApi {
   }
 
   logout(token: string) {
-    return this.axios.post(`/tokens/revoke`, null, { headers: { Authorization: `Bearer ${token}`}});
+    return this.axios.post(`/token/revoke`, null, { headers: { Authorization: `Bearer ${token}`}});
   }
 
   register(data: any) {
@@ -29,14 +30,9 @@ class UserApi extends BaseApi {
     return this.axiosWithAuth.put(`${this.endpoint}`, data);
   }
 
-  // override delete(id: string) {
-  //   try {
-  //     return this.axiosWithAuth.delete(`${this.endpoint}/${id}`);
-  //   } catch (error) {
-      
-  //   }
-  //   console.log('no functionality to delete a user since it\'s just me');
-  // }
+  delete(id: string): any {
+    return null; // override default delete to prevent deleting users
+  }
 }
 
 export default new UserApi();

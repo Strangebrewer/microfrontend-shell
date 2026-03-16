@@ -3,11 +3,13 @@ import { BaseRouter } from './BaseRouter';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import { useGetCurrentUser } from './hooks/userHooks';
+import { useUserStore } from '@bka-stuff/mfe-utils';
 
 import { authClient } from './utils/authClient';
 
 const Shell: FC = () => {
   const [getCurrentUser] = useGetCurrentUser();
+  const { setIsReady, clearUser } = useUserStore();
 
   useEffect(() => {
     (async function () {
@@ -16,12 +18,15 @@ const Shell: FC = () => {
       try {
         if (token || refreshToken) {
           await getCurrentUser();
+        } else {
+          clearUser();
         }
       } catch (error) {
         console.log('error in App.jsx:::', error);
         authClient.clearTokens();
-        // if (token) resetAuthToken();
-        // if (refreshToken) resetRefreshToken();
+        clearUser();
+      } finally {
+        setTimeout(() => setIsReady(true), 1000);
       }
     })();
   }, []);

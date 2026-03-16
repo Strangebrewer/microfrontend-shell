@@ -45,7 +45,7 @@ const config: Configuration = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'auto',
+    publicPath: '/',
     clean: true,
     uniqueName: 'shell',
   },
@@ -68,6 +68,8 @@ const config: Configuration = {
         'react-dom': { singleton: true },
         'react-router-dom': { singleton: true },
         "@tanstack/react-query": { singleton: true },
+        zustand: { singleton: true },
+        '@bka-stuff/mfe-utils': { singleton: true },
       },
     }),
   ],
@@ -76,6 +78,9 @@ const config: Configuration = {
     port: 3000,
     hot: false,
     historyApiFallback: true,
+    devMiddleware: {
+      publicPath: '/',
+    },
   },
 };
 

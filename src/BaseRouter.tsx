@@ -1,27 +1,19 @@
-import { FC, lazy, Suspense } from 'react';
+import { FC, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
-const App1 = lazy(() => import('mfe-app-one/App'));
-const App2 = lazy(() => import('mfe-app-two/App'));
+import { routes, bootRoutePath } from './utils/routeUtils';
 
 export const BaseRouter: FC = () => {
-  const routes = [
-    {
-      path: '/job-search/*',
-      Component: App2
-    },
-    {
-      path: '/*',
-      Component: App1,
-    },
-  ];
 
   return (
     <Routes>
       {routes.map((route) => {
-        const { path, Component } = route;
+        const { path, normal, delayed } = route;
+        const Component = path === bootRoutePath ? delayed : normal;
+
         return <Route key={path} path={path} element={
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense
+            fallback={<div>Loading and stuff...</div>}
+          >
             <Component />
           </Suspense>
         } />;

@@ -1,13 +1,13 @@
 import api from '../api';
 import { authClient } from '../utils/authClient';
+import { useUserStore } from '@bka-stuff/mfe-utils';
 
 export const useGetCurrentUser = () => {
-  // const { setUserState } = useUserState();
+  const { setUser } = useUserStore();
   async function getCurrentUser() {
     const response = await api.user.me();
     if (response?.data) {
-      console.log('response.data in getCurrentUser:::', response.data);
-      // setUserState(response.data);
+      setUser(response.data);
       return response.data;
     }
   }
@@ -15,14 +15,11 @@ export const useGetCurrentUser = () => {
 };
 
 export const useLogin = () => {
-  // const { setUserState } = useUserState();
+  const { setUser } = useUserStore();
   async function login(credentials: any) {
     const response = await api.user.login(credentials);
-    console.log('response.data::: ', response.data)
     if (response?.data) {
-      // setUserState(response.data.user);
-      // setAuthToken(response.data.accessToken);
-      // setRefreshToken(response.data.refreshToken);
+      setUser(response.data.user);
       authClient.setTokens(response.data.accessToken, response.data.refreshToken)
     }
   }
@@ -30,19 +27,11 @@ export const useLogin = () => {
 };
 
 export const useLogout = () => {
-  // const { setUserState } = useUserState();
-  // const { setProjects } = useProjectsState();
-  // const { setSubjects } = useSubjectsState();
-  // const { setTexts } = useTextsState();
-  function logout() {
-    api.user.logout(authClient.getRefreshToken() || "");
+  const { clearUser } = useUserStore();
+  async function logout() {
+    await api.user.logout(authClient.getRefreshToken() || "");
     authClient.logout();
-    // resetAuthToken();
-    // resetRefreshToken();
-    // setUserState(null);
-    // setProjects(null);
-    // setSubjects(null);
-    // setTexts(null);
+    clearUser();
   }
   return [logout];
 };
