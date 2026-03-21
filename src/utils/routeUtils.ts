@@ -46,11 +46,11 @@ function getRoutePrefix(path: string) {
 export const routes: RouteDefinition[] = [
   {
     path: '/job-search/*',
-    ...buildLazyImports(() => import('mfe-app-two/App'), MINIMUM_LOAD_DELAY),
+    ...buildLazyImports(() => import('mfe-job-search/App'), MINIMUM_LOAD_DELAY),
   },
   {
     path: '/*',
-    ...buildLazyImports(() => import('mfe-app-one/App'), MINIMUM_LOAD_DELAY),
+    ...buildLazyImports(() => import('mfe-dashboard/App'), MINIMUM_LOAD_DELAY),
   },
 ];
 

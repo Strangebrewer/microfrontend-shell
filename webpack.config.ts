@@ -59,8 +59,8 @@ const config: Configuration = {
       name: 'shell',
 
       remotes: {
-        'mfe-app-one': 'mfe_app_one@http://localhost:3001/remoteEntry.js',
-        'mfe-app-two': 'mfe_app_two@http://localhost:3002/remoteEntry.js',
+        'mfe-dashboard': 'mfe_dashboard@http://localhost:3001/remoteEntry.js',
+        'mfe-job-search': 'mfe_job_search@http://localhost:3002/remoteEntry.js',
       },
 
       shared: {
