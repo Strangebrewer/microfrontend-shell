@@ -19,3 +19,16 @@
 .--candy {
   color: var(--candy);
 }
+
+.shell-login-btn {
+  position: absolute;
+  right: 16px;
+}
+
+.shell-nav-header {
+  border: 1px solid #ccc;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}

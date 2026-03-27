@@ -39,8 +39,7 @@ function buildLazyImports<T extends React.ComponentType<any>>(
 }
 
 function getRoutePrefix(path: string) {
-  const regex = /\/\*$/; // matches "/*" at the end of the string
-  return path === '/*' ? '/' : path.replace(regex, '');
+  return path.replace(/\/\*$/, ''); // strips trailing "/*"
 }
 
 export const routes: RouteDefinition[] = [
@@ -49,7 +48,7 @@ export const routes: RouteDefinition[] = [
     ...buildLazyImports(() => import('mfe-job-search/App'), MINIMUM_LOAD_DELAY),
   },
   {
-    path: '/*',
+    path: '/dashboard/*',
     ...buildLazyImports(() => import('mfe-dashboard/App'), MINIMUM_LOAD_DELAY),
   },
 ];
@@ -57,5 +56,5 @@ export const routes: RouteDefinition[] = [
 export const bootRoutePath =
   routes.find((route) => {
     const prefix = getRoutePrefix(route.path);
-    return prefix !== '/' && bootPath.startsWith(prefix);
-  })?.path ?? '/*';
+    return bootPath.startsWith(prefix);
+  })?.path ?? '/dashboard/*';

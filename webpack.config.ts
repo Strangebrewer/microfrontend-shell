@@ -15,6 +15,7 @@ const config = {
     resolve: path.resolve,
     _dirname: __dirname,
     port: 3000,
+    publicPath: '/',
   }),
 
   plugins: [
