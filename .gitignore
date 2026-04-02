@@ -18,4 +18,4 @@ __mocks__/ui_connect_llm
 /harness/coverage
 dist/
 NOTES.MD
-
+NOTES.md
