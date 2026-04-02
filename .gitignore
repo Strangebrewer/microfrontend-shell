@@ -17,4 +17,5 @@ __mocks__/ui_connect_llm
 # testing
 /harness/coverage
 dist/
-NOTES.md
+NOTES.MD
+
